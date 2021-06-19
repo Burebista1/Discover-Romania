@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons> -->
+    <ion-title>Cerere</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Anuleaza</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <!-- Tour info group -->
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Tour</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../assets/ImagesSmall/{{tour.Image}}">
+        </ion-thumbnail>
+        <ion-label>
+          <h2 text-wrap>{{tour.Title}}</h2>
+          <p>Duration: {{tour.Duration}} min</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+    <!-- Schedule group -->
+    <ion-item-group>
+      <ion-item-divider>
+      <ion-label>Programul dorit</ion-label>
+    </ion-item-divider>
+    <!-- Data -->
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-datetime [(ngModel)]="request.Date"
+                    min="{{day_after_tomorrow}}"
+                    max="{{two_years_later}}"
+                    display-format="DDD, MMMM DD YYYY"
+                    picker-format="MMMM DD YYYY"
+                    placeholder="Te rugam sa alegi data!">
+      </ion-datetime>
+    </ion-item>
+    <!-- Time -->
+    <ion-item>
+      <ion-label>Interval orar</ion-label>
+      <ion-datetime [(ngModel)]="request.Time"
+                    hourValues="9,10,11,12,13,14,15,16,17"
+                    minuteValues="0,15,30,45"
+                    display-format="hh:mm A"
+                    picker-format="h mm"
+                    placeholder="Te rugam sa alegi si intervalul orar!">
+      </ion-datetime>
+    </ion-item>
+    </ion-item-group>
+    <!-- Grup selctor limba -->
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Limbă</ion-label>
+      </ion-item-divider>
+     
+      <ion-item>
+        <ion-label>Ghidul ar trebui să vorbească/The guide should speak</ion-label>
+        <ion-select [(ngModel)]="request.Language"
+          interface="popover">
+          <ion-select-option>romainian</ion-select-option>
+          <ion-select-option>english</ion-select-option>
+          <ion-select-option>spanish</ion-select-option>
+          <ion-select-option>african</ion-select-option>
+          <ion-select-option>chinese</ion-select-option>
+          <ion-select-option>aztec</ion-select-option>
+          <ion-select-option>italian</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-item-group>
+     
+      <!-- Grup informatii de contact -->
+    <ion-item-group>
+        <ion-item-divider>
+        <ion-label>Datele tale de contact</ion-label>
+      </ion-item-divider>
+      <!-- First name -->
+      <ion-item>
+        <ion-label>Nume</ion-label>
+        <ion-input type="text" [(ngModel)]="request.LastName">
+        </ion-input>
+      </ion-item>
+      <!-- Last name -->
+      <ion-item>
+        <ion-label>Prenume</ion-label>
+        <ion-input type="text" [(ngModel)]="request.FirstName">
+        </ion-input>
+      </ion-item>
+      <!-- Email -->
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="request.Email">
+        </ion-input>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
+<ion-footer class="ion-padding">
+  <ion-button routerLink="/favorites"
+              routerDirection="root">
+    Inapoi la pagina cu Favorite          
+  </ion-button>
+  <ion-button expand="block" (click)="send()">
+    Trimite cerere
+  </ion-button>
+</ion-footer>
+
+

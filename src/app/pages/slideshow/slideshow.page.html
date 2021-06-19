@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Prezentare</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides [options]="sliderConfig">
+    <ion-slide *ngFor="let tour of atService.all_tours">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title> {{ tour.Title }} </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <img src="../assets/images/{{tour.Image}}" />
+          <hr />
+          <ion-button expand="full" (click)="manageFavorites(tour)">
+            <ion-icon
+              *ngIf="!tour.isFavorite"
+              name="star"
+              slot="start"
+            ></ion-icon>
+            <ion-label *ngIf="!tour.isFavorite"> Adaugă la Favorite </ion-label>
+            <ion-icon
+              *ngIf="tour.isFavorite"
+              name="trash"
+              slot="start"
+            ></ion-icon>
+            <ion-label *ngIf="tour.isFavorite">
+              Elimină de la Favorite
+            </ion-label>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
